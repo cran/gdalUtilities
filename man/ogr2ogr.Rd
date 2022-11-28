@@ -52,22 +52,26 @@ ogr2ogr(
   segmentize,
   makevalid,
   fieldTypeToString,
-  mapFieldType,
   unsetFieldWidth,
+  mapFieldType,
+  fieldmap,
   splitlistfields,
   maxsubfields,
+  resolveDomains,
   explodecollections,
   zfield,
   gcp,
   order,
   tps,
-  fieldmap,
+  s_coord_epoch,
+  t_coord_epoch,
+  a_coord_epoch,
   addfields,
+  unsetFid,
+  emptyStrAsNull,
   relaxedFieldNameMatch,
   forceNullable,
   unsetDefault,
-  unsetFid,
-  emptyStrAsNull,
   nomd,
   mo,
   noNativeData,
@@ -101,24 +105,29 @@ documentation}.}
 \item{clipdst, clipdstsql, clipdstlayer, clipdstwhere, wrapdateline}{See \href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
 documentation}.}
 
-\item{datelineoffset, simplify, segmentize, makevalid}{See
+\item{datelineoffset, simplify, segmentize, makevalid, addfields}{See
 See \href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
 documentation}.}
 
-\item{fieldTypeToString, mapFieldType, unsetFieldWidth}{See \href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
-documentation}.}
-
-\item{splitlistfields, maxsubfields, explodecollections, zfield, gcp}{See \href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
-documentation}.}
-
-\item{order, tps, fieldmap, addfields, relaxedFieldNameMatch}{See \href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
-documentation}.}
-
-\item{forceNullable, unsetDefault, unsetFid, emptyStrAsNull, nomd}{See
+\item{fieldmap, splitlistfields, maxsubfields}{See
 \href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
 documentation}.}
 
-\item{mo, noNativeData}{See
+\item{resolveDomains, explodecollections, zfield, gcp, order, tps}{See
+\href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
+documentation}.}
+
+\item{s_coord_epoch, t_coord_epoch, a_coord_epoch}{See
+\href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
+documentation}.}
+
+\item{unsetFid, emptyStrAsNull, relaxedFieldNameMatch, forceNullable}{See See \href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
+documentation}.}
+
+\item{unsetDefault, fieldTypeToString, unsetFieldWidth, mapFieldType}{See \href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
+documentation}.}
+
+\item{nomd, mo, noNativeData}{See
 \href{https://gdal.org/programs/ogr2ogr.html}{ogr2ogr
 documentation}.}
 
@@ -128,7 +137,7 @@ will print the command-line call that would produce the
 equivalent output.}
 }
 \value{
-None. Called instead for its side effect.
+Silently returns path to \code{dst_datasource_name}.
 }
 \description{
 This function provides an interface mirroring that of the GDAL

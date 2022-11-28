@@ -28,10 +28,11 @@ gdal_translate(
   epo,
   eco,
   a_srs,
-  a_scale,
-  a_offset,
+  a_coord_epoch,
   a_ullr,
   a_nodata,
+  a_scale,
+  a_offset,
   colorinterp,
   mo,
   co,
@@ -67,8 +68,8 @@ project's
 \href{https://gdal.org/programs/gdal_translate.html}{gdal_translate
 documentation} for details.}
 
-\item{a_srs, a_scale, a_offset, a_ullr, a_nodata, }{See the GDAL
-project's
+\item{a_srs, a_coord_epoch, a_ullr, a_nodata, a_scale, a_offset, }{See
+the GDAL project's
 \href{https://gdal.org/programs/gdal_translate.html}{gdal_translate
 documentation} for details.}
 
@@ -88,7 +89,7 @@ will print the command-line call that would produce the
 equivalent output.}
 }
 \value{
-None. Called instead for its side effect.
+Silently returns path to \code{dst_dataset}.
 }
 \description{
 This function provides an interface mirroring that of the GDAL

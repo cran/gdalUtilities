@@ -22,14 +22,15 @@
 ##'     GDAL project's
 ##'     \href{https://gdal.org/programs/gdalbuildvrt.html}{gdalbuildvrt
 ##'     documentation} for details.
-##' @param input_file_list,overwrite See the GDAL project's
+##' @param input_file_list,strict,non_strict,overwrite See the GDAL
+##'     project's
 ##'     \href{https://gdal.org/programs/gdalbuildvrt.html}{gdalbuildvrt
 ##'     documentation} for details.
 ##' @param dryrun Logical (default \code{FALSE}). If \code{TRUE},
 ##'     instead of executing the requested call to GDAL, the function
 ##'     will print the command-line call that would produce the
 ##'     equivalent output.
-##' @return None. Called instead for its side effect.
+##' @return Silently returns path to \code{output.vrt}.
 ##' @export
 ##' @author Joshua O'Brien
 ##' @examples
@@ -51,7 +52,7 @@ gdalbuildvrt <-
              tap, separate, b, sd, allow_projection_difference, optim,
              q, addalpha, hidenodata, srcnodata, vrtnodata,
              ignore_srcmaskband, a_srs, r, oo, input_file_list,
-             overwrite, dryrun = FALSE)
+             strict, non_strict, overwrite, dryrun = FALSE)
 {
     ## Unlike `as.list(match.call())`, forces eval of arguments
     args <-  mget(names(match.call())[-1])

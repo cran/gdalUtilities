@@ -18,8 +18,8 @@
 ##'     project's
 ##'     \href{https://gdal.org/programs/gdal_translate.html}{gdal_translate
 ##'     documentation} for details.
-##' @param a_srs,a_scale,a_offset,a_ullr,a_nodata, See the GDAL
-##'     project's
+##' @param a_srs,a_coord_epoch,a_ullr,a_nodata,a_scale,a_offset, See
+##'     the GDAL project's
 ##'     \href{https://gdal.org/programs/gdal_translate.html}{gdal_translate
 ##'     documentation} for details.
 ##' @param colorinterp Along with \code{colorinterp}, arguments named
@@ -35,7 +35,7 @@
 ##'     instead of executing the requested call to GDAL, the function
 ##'     will print the command-line call that would produce the
 ##'     equivalent output.
-##' @return None. Called instead for its side effect.
+##' @return Silently returns path to \code{dst_dataset}.
 ##' @export
 ##' @author Joshua O'Brien
 ##' @examples
@@ -82,9 +82,9 @@ gdal_translate <-
     function(src_dataset, dst_dataset, ..., ot, strict, IF, of, b,
              mask, expand, outsize, tr, r, scale, exponent, unscale,
              srcwin, projwin, projwin_srs, srs, epo, eco, a_srs,
-             a_scale, a_offset, a_ullr, a_nodata, colorinterp,
-             mo, co, nogcp, gcp, q, sds, stats, noxmp, norat, oo,
-             sd_index, config, dryrun = FALSE)
+             a_coord_epoch, a_ullr, a_nodata, a_scale, a_offset,
+             colorinterp, mo, co, nogcp, gcp, q, sds, stats, noxmp,
+             norat, oo, sd_index, config, dryrun = FALSE)
 {
     ## First, handle any colorinterp_XX arguments
     dots <- list(...)

@@ -38,22 +38,20 @@ Translating a GDAL command-line call into the equivalent R call is, in
 most cases, a straightforward excercise. To do so, just follow these
 basic rules:
 
-1. **Argument names:** In general, the name of the R argument
-   corresponding to a GDAL utility's command line flag is gotten by
-   removing the `-` or `--` from the flag. So, for instance, in a call
-   to `gdalUtilities::gdal_translate()`, the command line flags
-   `-projwin_srs` and `--config` become the formal arguments
-   `projwin_srs` and `config`. The single exception is the
-   command-line flag `-3d`, an option for `gdal_rasterize`, which is
-   represented by the formal argument `threeD` in its R equivalent (R
-   arguments not being allowed to start with a digit).
+1. **Argument names:** With very few exceptions, the name of
+   the R argument corresponding to a GDAL utility's command line flag
+   is gotten by removing the `-` or `--` from the flag. So, for
+   instance, in a call to `gdalUtilities::gdal_translate()`, the
+   command line flags `-projwin_srs` and `--config` become the formal
+   arguments `projwin_srs` and `config`. The two exceptions are the
+   command-line flags `-3d` and `-if`, which are represented in
+   `gdalUtilities`, by the formal arguments `threeD` and `IF`.
 
 2. **Character and numeric arguments:** Flags that are followed by one
    or more character strings or numbers may be specified by passing
    either a character or numeric vector to the corresponding formal
    argument. So, for example, to shrink the size of the raster
-   `"in.tif"` by 50% in each dimension, outputting the result as
-   `"out.tif"`, you could do:
+   `"in.tif"` by 50% in each dimension, you could do:
    ```r
    gdal_translate("in.tif", "out.tif", outsize = c("50%","50%"))
    ```
@@ -105,31 +103,16 @@ basic rules:
    ```
 
 
-## Comparison to **gdalUtils** package
-
-Jonathan Greenberg's (currently archived) [**gdalUtils**
-package](https://cran.r-project.org/package=gdalUtils) long provided
-functionality very much like **gdalUtilities**, with one important
-caveat. Unlike the current package, **gdalUtils** required that an
-independent local system installation of GDAL already be in place. (It
-worked, in essence, by constructing system calls to GDAL, which it
-then farms out via calls to the R function `system()`.)
-**gdalUtilities**, by constrast, sidesteps any dependence on an
-additional external program. It does so by constructing calls to the R
-function `sf::gdal_utils()` which provides a raw interface to GDAL
-binaries that are bundled together as part of the R package **sf**.
-
-
 ## Supported GDAL utilities
 
 At present, `sf::gdal_utils()` (and thus the **gdalUtilities**
-package) provides bindings for only a subset of the GDAL utilities. A
-list of the supported utilities, followed by those that are not
-supported, are given below:
+package) provides bindings for only a subset of the GDAL
+utilities. Lists of the supported and unsupported utilities are given
+below:
 
 ### GDAL utilities provided by this package
 ```r
-## Supported 'GDAL Utility Programs'
+## Supported 'Raster Programs'
 gdal_grid
 gdal_rasterize
 gdal_translate
@@ -139,13 +122,17 @@ gdalinfo
 gdalwarp
 nearblack
 
-## Supported 'OGR Utility Programs'
+## Supported 'Multidimensional Raster Programs'
+gdalmdiminfo
+gdalmdimtranslate
+
+## Supported 'Vector Programs'
 ogr2ogr
 ```
 
 ### GDAL utilities *not* provided by this package
 ```r
-## Unsupported 'GDAL Utility Programs'
+## Unsupported 'Raster Programs'
 gdal_contour
 gdaladdo
 gdallocationinfo
@@ -153,7 +140,7 @@ gdalmanage
 gdaltindex
 gdaltransform
 
-## Unsupported 'OGR Utility Programs' 
+## Unsupported 'Vector Programs' 
 ogrinfo
 ogrlineref
 ogrtindex

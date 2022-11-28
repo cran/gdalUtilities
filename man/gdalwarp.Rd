@@ -12,7 +12,10 @@ gdalwarp(
   t_srs,
   ct,
   to,
-  novshiftgrid,
+  vshift,
+  novshift,
+  s_coord_epoch,
+  t_coord_epoch,
   order,
   tps,
   rpc,
@@ -65,8 +68,12 @@ datasource.}
 \item{...}{Here, a placeholder argument that forces users to
 supply exact names of all subsequent formal arguments.}
 
-\item{s_srs, t_srs, ct, to, novshiftgrid, order, tps, rpc, geoloc, et}{See
-the GDAL project's
+\item{s_srs, t_srs, ct, to, vshift, novshift}{See the GDAL project's
+\href{https://gdal.org/programs/gdalwarp.html}{gdalwarp
+documentation} for details.}
+
+\item{s_coord_epoch, t_coord_epoch, order, tps, rpc, geoloc, et}{See the
+GDAL project's
 \href{https://gdal.org/programs/gdalwarp.html}{gdalwarp
 documentation} for details.}
 
@@ -93,7 +100,7 @@ will print the command-line call that would produce the
 equivalent output.}
 }
 \value{
-None. Called instead for its side effect.
+Silently returns path to \code{dstfile}.
 }
 \description{
 This function provides an interface mirroring that of the GDAL

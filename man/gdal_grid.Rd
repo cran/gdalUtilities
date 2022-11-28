@@ -62,7 +62,7 @@ will print the command-line call that would produce the
 equivalent output.}
 }
 \value{
-None. Called instead for its side effect.
+Silently returns path to \code{dst_filename}.
 }
 \description{
 This function provides an interface mirroring that of the GDAL
@@ -106,7 +106,8 @@ gdal_grid(src_datasource = vrt_header_file,
           of = "GTiff", ot = "Float64", l = "dem")
 
 ## Check that it works
-if(requireNamespace("raster", quietly = TRUE)) {
+if(requireNamespace("raster", quietly = TRUE) &
+   requireNamespace("rgdal", quietly = TRUE)) {
     library(raster)
     plot(raster(out_raster))
     text(Northing ~ Easting, data = pts,

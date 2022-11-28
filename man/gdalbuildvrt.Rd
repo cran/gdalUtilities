@@ -28,6 +28,8 @@ gdalbuildvrt(
   r,
   oo,
   input_file_list,
+  strict,
+  non_strict,
   overwrite,
   dryrun = FALSE
 )
@@ -57,7 +59,8 @@ GDAL project's
 \href{https://gdal.org/programs/gdalbuildvrt.html}{gdalbuildvrt
 documentation} for details.}
 
-\item{input_file_list, overwrite}{See the GDAL project's
+\item{input_file_list, strict, non_strict, overwrite}{See the GDAL
+project's
 \href{https://gdal.org/programs/gdalbuildvrt.html}{gdalbuildvrt
 documentation} for details.}
 
@@ -67,7 +70,7 @@ will print the command-line call that would produce the
 equivalent output.}
 }
 \value{
-None. Called instead for its side effect.
+Silently returns path to \code{output.vrt}.
 }
 \description{
 This function provides an interface mirroring that of the GDAL

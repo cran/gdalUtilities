@@ -9,8 +9,11 @@
 ##' @param dstfile Character. Path to a GDAL-supported output file.
 ##' @param ... Here, a placeholder argument that forces users to
 ##'     supply exact names of all subsequent formal arguments.
-##' @param s_srs,t_srs,ct,to,novshiftgrid,order,tps,rpc,geoloc,et See
-##'     the GDAL project's
+##' @param s_srs,t_srs,ct,to,vshift,novshift See the GDAL project's
+##'     \href{https://gdal.org/programs/gdalwarp.html}{gdalwarp
+##'     documentation} for details.
+##' @param s_coord_epoch,t_coord_epoch,order,tps,rpc,geoloc,et See the
+##'     GDAL project's
 ##'     \href{https://gdal.org/programs/gdalwarp.html}{gdalwarp
 ##'     documentation} for details.
 ##' @param refine_gcps,te,te_srs,tr,tap,ts,ovr,wo,ot,wt,r,srcnodata
@@ -32,7 +35,7 @@
 ##'     instead of executing the requested call to GDAL, the function
 ##'     will print the command-line call that would produce the
 ##'     equivalent output.
-##' @return None. Called instead for its side effect.
+##' @return Silently returns path to \code{dstfile}.
 ##' @export
 ##' @author Joshua O'Brien
 ##' @examples
@@ -75,13 +78,13 @@
 ##' }
 ##' }
 gdalwarp <-
-    function(srcfile, dstfile, ..., s_srs, t_srs, ct, to,
-             novshiftgrid, order, tps, rpc, geoloc, et, refine_gcps,
-             te, te_srs, tr, tap, ts, ovr, wo, ot, wt, r, srcnodata,
-             dstnodata, srcalpha, nosrcalpha, dstalpha, wm, multi, q,
-             IF, of, co, cutline, cl, cwhere, csql, cblend,
-             crop_to_cutline, overwrite, nomd, cvmd, setci, oo, doo,
-             config, dryrun = FALSE)
+    function(srcfile, dstfile, ..., s_srs, t_srs, ct, to, vshift,
+             novshift, s_coord_epoch, t_coord_epoch, order, tps, rpc,
+             geoloc, et, refine_gcps, te, te_srs, tr, tap, ts, ovr,
+             wo, ot, wt, r, srcnodata, dstnodata, srcalpha,
+             nosrcalpha, dstalpha, wm, multi, q, IF, of, co, cutline,
+             cl, cwhere, csql, cblend, crop_to_cutline, overwrite,
+             nomd, cvmd, setci, oo, doo, config, dryrun = FALSE)
 {
     ## Unlike `as.list(match.call())`, forces eval of arguments
     args <-  mget(names(match.call())[-1])
