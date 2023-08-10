@@ -65,7 +65,7 @@
 ##' \donttest{
 ##' ## Prepare file paths
 ##' td <- tempdir()
-##' lux <- system.file("external/lux.shp", package = "raster")
+##' lux <- system.file("ex/lux.shp", package = "terra")
 ##' lux_merc <- file.path(td, "mercator.shp")
 ##' lux_lcc <- file.path(td, "lcc.shp")
 ##'
@@ -76,12 +76,11 @@
 ##' ## https://en.wikipedia.org/wiki/Lambert_conformal_conic_projection
 ##' ogr2ogr(lux, lux_lcc, t_srs = "EPSG:3347", overwrite = TRUE)
 ##'
-##' if(requireNamespace("raster", quietly = TRUE)) {
-##'     library(raster)
+##' if(require(terra)) {
 ##'     op <- par(mfcol = c(1,2))
-##'     plot(shapefile(lux_merc), main = "WGS 84",
+##'     plot(vect(lux_merc), main = "WGS 84",
 ##'          border = "darkgrey", col = gray.colors(12))
-##'     plot(shapefile(lux_lcc), main = "LCC",
+##'     plot(vect(lux_lcc), main = "LCC",
 ##'          border = "darkgrey", col = gray.colors(12))
 ##'     par(op)
 ##' }
